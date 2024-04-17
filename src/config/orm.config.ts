@@ -1,12 +1,12 @@
 import * as dotenv from 'dotenv';
-import { DataSourceOptions } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { ENVIRONMENT } from './const/env.enum';
 
 dotenv.config();
 
-const mysql: DataSourceOptions = {
+const production: DataSourceOptions = {
   type: 'mysql',
   host: process.env.DB_HOST,
   port: +process.env.DB_PORT,
@@ -14,6 +14,17 @@ const mysql: DataSourceOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: false,
+  namingStrategy: new SnakeNamingStrategy(),
+};
+
+const development: DataSourceOptions = {
+  type: 'mysql',
+  host: process.env.DB_HOST,
+  port: +process.env.DB_PORT,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  synchronize: true,
   namingStrategy: new SnakeNamingStrategy(),
 };
 
@@ -26,16 +37,17 @@ const test: DataSourceOptions = {
   namingStrategy: new SnakeNamingStrategy(),
 };
 
-const dataSourceOptions: DataSourceOptions = (() => {
+export const dataSourceOptions: DataSourceOptions = (() => {
   if (process.env.NODE_ENV === ENVIRONMENT.TEST) {
     return test;
   }
 
-  if (
-    process.env.NODE_ENV === ENVIRONMENT.PRODUCTION ||
-    process.env.NODE_ENV === ENVIRONMENT.DEVELOPMENT
-  ) {
-    return mysql;
+  if (process.env.NODE_ENV === ENVIRONMENT.DEVELOPMENT) {
+    return development;
+  }
+
+  if (process.env.NODE_ENV === ENVIRONMENT.PRODUCTION) {
+    return production;
   }
 
   throw new Error(
@@ -43,8 +55,8 @@ const dataSourceOptions: DataSourceOptions = (() => {
   );
 })();
 
-export default {
+export default new DataSource({
   ...dataSourceOptions,
   entities: ['./src/**/infrastructure/database/**/*.schema.ts'],
   migrations: ['./data/migrations/**/*.ts'],
-};
+});

@@ -4,8 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { getEnvConfig } from 'src/config/env.config';
-import dataSourceOptions from 'src/config/orm.config';
+
+import { getEnvConfig } from '../config/env.config';
+import { dataSourceOptions } from '../config/orm.config';
 
 @Module({
   imports: [
