@@ -9,11 +9,11 @@ export class PageQueryParamsDto {
   number?: number;
 }
 
-export class SizeQueryParamsDto {
+export class LimitQueryParamsDto {
   @ApiPropertyOptional()
   @IsInt()
   @Min(1)
   @Max(100)
   @IsOptional()
-  size?: number;
+  limit?: number;
 }
