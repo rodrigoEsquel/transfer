@@ -1,0 +1,6 @@
+entity: User
+items:
+  user{1..20}:
+    firstName: 'Joe'
+    lastName: 'Doe'
+    email: '{{internet.email}}'
