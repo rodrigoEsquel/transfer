@@ -2,11 +2,11 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { existsSync } from 'fs';
 
-import { initTestApp, loadFixtures } from '../../../../config/test.config';
-import { dataSourceOptions } from '../../../../config/orm.config';
+import { initTestApp, loadFixtures } from '../../../../../config/test.config';
+import { dataSourceOptions } from '../../../../../config/orm.config';
 
-import { CreateUserDto } from '../../application/dto/create-user.dto';
-import { UpdateUserDto } from '../../application/dto/update-user.dto';
+import { CreateUserDto } from '../../../application/dto/create-user.dto';
+import { UpdateUserDto } from '../../../application/dto/update-user.dto';
 
 describe('User Controller (e2e)', () => {
   let app: INestApplication;
