@@ -8,6 +8,8 @@ import { AppService } from './app.service';
 import { getEnvConfig } from '../config/env.config';
 import { dataSourceOptions } from '../config/orm.config';
 
+import { UserModule } from './user/user.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -20,6 +22,7 @@ import { dataSourceOptions } from '../config/orm.config';
         autoLoadEntities: true,
       }),
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
