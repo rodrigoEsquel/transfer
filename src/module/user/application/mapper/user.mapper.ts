@@ -23,7 +23,7 @@ export class UserMapper {
     return userResponse;
   }
 
-  fromUsertoUserDto(user: User): UserResponseDto {
+  fromUserToUserDto(user: User): UserResponseDto {
     const userDtoResponse = new UserResponseDto();
     userDtoResponse.firstName = user.firstName;
     userDtoResponse.lastName = user.lastName;

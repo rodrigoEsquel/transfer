@@ -20,18 +20,18 @@ export class UserService {
   async getAll({ page, limit }): Promise<UserResponseDto[]> {
     limit = Math.min(limit, 100);
     const userList = await this.userRepository.getAll(page, limit);
-    return userList.map(this.userMapper.fromUsertoUserDto);
+    return userList.map(this.userMapper.fromUserToUserDto);
   }
 
   async getOneById(id: number): Promise<UserResponseDto> {
     const user = await this.userRepository.getOneById(id);
-    return this.userMapper.fromUsertoUserDto(user);
+    return this.userMapper.fromUserToUserDto(user);
   }
 
   async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
     const userToUpdate = this.userMapper.fromCreateUserDtoToUser(createUserDto);
     const newUser = await this.userRepository.create(userToUpdate);
-    return this.userMapper.fromUsertoUserDto(newUser);
+    return this.userMapper.fromUserToUserDto(newUser);
   }
 
   async update(
@@ -40,7 +40,7 @@ export class UserService {
   ): Promise<UserResponseDto> {
     const userUpdate = this.userMapper.fromUpdateUserDtoToUser(updateUserDto);
     const userUpdated = await this.userRepository.update(userId, userUpdate);
-    return this.userMapper.fromUsertoUserDto(userUpdated);
+    return this.userMapper.fromUserToUserDto(userUpdated);
   }
 
   async delete(id: number): Promise<void> {
