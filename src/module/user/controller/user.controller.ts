@@ -9,11 +9,12 @@ import {
   Query,
 } from '@nestjs/common';
 
-import { UserService } from '../application/service/user.service';
 import {
   PageQueryParamsDto,
   LimitQueryParamsDto,
-} from 'src/common/dto/pagination.dto';
+} from '../../../common/dto/pagination.dto';
+
+import { UserService } from '../application/service/user.service';
 import { CreateUserDto } from '../application/dto/create-user.dto';
 import { UpdateUserDto } from '../application/dto/update-user.dto';
 import { UserResponseDto } from '../application/dto/user-response.dto';
