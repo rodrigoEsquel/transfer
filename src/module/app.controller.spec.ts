@@ -1,9 +1,9 @@
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
+import { existsSync } from 'fs';
 
 import { initTestApp, loadFixtures } from '../config/test.config';
 import { dataSourceOptions } from '../config/orm.config';
-import { existsSync } from 'fs';
 
 describe('AppController', () => {
   let app: INestApplication;
