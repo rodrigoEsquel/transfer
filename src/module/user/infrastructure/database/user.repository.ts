@@ -29,8 +29,9 @@ export class UserRepository implements IUserRepository {
     return this.repository.save(user);
   }
 
-  async update(user: User): Promise<User> {
-    return this.repository.save(user);
+  async update(id: number, user: Partial<User>): Promise<User> {
+    await this.repository.update({ id }, user);
+    return await this.repository.findOneBy({ id });
   }
 
   async delete(id: number): Promise<void> {

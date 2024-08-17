@@ -6,6 +6,6 @@ export interface IUserRepository {
   getAll(page: number, limit: number): Promise<User[]>;
   getOneById(id: number): Promise<User>;
   create(user: User): Promise<User>;
-  update(user: User): Promise<User>;
+  update(id: number, user: User): Promise<User>;
   delete(id: number): Promise<void>;
 }
