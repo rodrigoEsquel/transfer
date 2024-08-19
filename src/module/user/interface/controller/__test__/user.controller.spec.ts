@@ -60,6 +60,13 @@ describe('User Controller (e2e)', () => {
         .get(`/user/${nonExistentUserId}`)
         .expect(HttpStatus.NOT_FOUND);
     });
+
+    it('should return 400 if searching a non numeric id', async () => {
+      const badUserId = 'userId';
+      await request(app.getHttpServer())
+        .get(`/user/${badUserId}`)
+        .expect(HttpStatus.BAD_REQUEST);
+    });
   });
 
   describe('/user (POST)', () => {
@@ -83,11 +90,12 @@ describe('User Controller (e2e)', () => {
   });
 
   describe('/user (PUT)', () => {
+    const updateUserDto: UpdateUserDto = {
+      firstName: 'Updated User',
+    };
+
     it('should update an existing user', async () => {
       const userId = 1;
-      const updateUserDto: UpdateUserDto = {
-        firstName: 'Updated User',
-      };
 
       await request(app.getHttpServer())
         .put(`/user/${userId}`)
@@ -100,13 +108,46 @@ describe('User Controller (e2e)', () => {
 
     it('should return 404 if user not found', async () => {
       const nonExistentUserId = 9999;
-      const updateUserDto: UpdateUserDto = {
-        firstName: 'Updated User',
-      };
+
       await request(app.getHttpServer())
         .put(`/user/${nonExistentUserId}`)
         .send(updateUserDto)
         .expect(HttpStatus.NOT_FOUND);
+    });
+
+    it('should return 400 if searching a non numeric id', async () => {
+      const badUserId = 'userId';
+
+      await request(app.getHttpServer())
+        .put(`/user/${badUserId}`)
+        .send(updateUserDto)
+        .expect(HttpStatus.BAD_REQUEST);
+    });
+  });
+
+  describe('/user (Delete)', () => {
+    it('should update an existing user', async () => {
+      const userId = 1;
+
+      await request(app.getHttpServer())
+        .delete(`/user/${userId}`)
+        .expect(HttpStatus.OK);
+    });
+
+    it('should return 404 if user not found', async () => {
+      const nonExistentUserId = 9999;
+
+      await request(app.getHttpServer())
+        .delete(`/user/${nonExistentUserId}`)
+        .expect(HttpStatus.NOT_FOUND);
+    });
+
+    it('should return 400 if searching a non numeric id', async () => {
+      const badUserId = 'userId';
+
+      await request(app.getHttpServer())
+        .delete(`/user/${badUserId}`)
+        .expect(HttpStatus.BAD_REQUEST);
     });
   });
 });
