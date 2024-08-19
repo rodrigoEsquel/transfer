@@ -10,6 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import {
+  ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -20,6 +21,7 @@ import {
   PageQueryParamsDto,
   LimitQueryParamsDto,
 } from '../../../../common/dto/pagination.dto';
+import { badIdProvidedSchema } from '../../../../common/interface/controller/schema/bad-id-provided.schema';
 
 import { userNotFoundSchema } from './schema/user-not-found.schema';
 import { UserService } from '../../application/service/user.service';
@@ -49,6 +51,10 @@ export class UserController {
     schema: { example: userNotFoundSchema },
     description: 'User not found',
   })
+  @ApiBadRequestResponse({
+    schema: { example: badIdProvidedSchema },
+    description: 'Bad request',
+  })
   @Get('/:id')
   async getById(
     @Param('id', new ParseIntPipe()) id: number,
@@ -73,6 +79,10 @@ export class UserController {
     schema: { example: userNotFoundSchema },
     description: 'User not found',
   })
+  @ApiBadRequestResponse({
+    schema: { example: badIdProvidedSchema },
+    description: 'Bad request',
+  })
   @Put(':id')
   async update(
     @Param('id', new ParseIntPipe()) id: number,
@@ -85,6 +95,10 @@ export class UserController {
   @ApiNotFoundResponse({
     schema: { example: userNotFoundSchema },
     description: 'User not found',
+  })
+  @ApiBadRequestResponse({
+    schema: { example: badIdProvidedSchema },
+    description: 'Bad request',
   })
   @Delete(':id')
   async delete(@Param('id', new ParseIntPipe()) id: number): Promise<void> {
