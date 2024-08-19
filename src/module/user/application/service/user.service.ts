@@ -17,8 +17,7 @@ export class UserService {
     private readonly userMapper: UserMapper,
   ) {}
 
-  async getAll({ page, limit }): Promise<UserResponseDto[]> {
-    limit = Math.min(limit, 100);
+  async getAll(page?: number, limit?: number): Promise<UserResponseDto[]> {
     const userList = await this.userRepository.getAll(page, limit);
     return userList.map(this.userMapper.fromUserToUserDto);
   }

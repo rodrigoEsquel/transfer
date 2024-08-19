@@ -50,7 +50,7 @@ describe('UserService Unit Test', () => {
       mockUserDtos.find((dto) => dto.firstName === user.firstName),
     );
 
-    const users = await userService.getAll({ page: 1, limit: 10 });
+    const users = await userService.getAll(1, 10);
 
     expect(userRepository.getAll).toHaveBeenCalledWith(1, 10);
     expect(users).toEqual(mockUserDtos);
