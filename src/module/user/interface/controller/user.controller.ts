@@ -19,6 +19,7 @@ import { CreateUserDto } from '../../application/dto/create-user.dto';
 import { UpdateUserDto } from '../../application/dto/update-user.dto';
 import { UserResponseDto } from '../../application/dto/user-response.dto';
 
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
