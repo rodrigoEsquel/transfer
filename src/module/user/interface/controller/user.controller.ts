@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -49,7 +50,9 @@ export class UserController {
     description: 'User not found',
   })
   @Get('/:id')
-  async getById(@Param('id') id: number): Promise<UserResponseDto> {
+  async getById(
+    @Param('id', new ParseIntPipe()) id: number,
+  ): Promise<UserResponseDto> {
     return await this.userService.getOneById(id);
   }
 
@@ -72,7 +75,7 @@ export class UserController {
   })
   @Put(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id', new ParseIntPipe()) id: number,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserResponseDto> {
     return await this.userService.update(id, updateUserDto);
@@ -84,7 +87,7 @@ export class UserController {
     description: 'User not found',
   })
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<void> {
+  async delete(@Param('id', new ParseIntPipe()) id: number): Promise<void> {
     return await this.userService.delete(id);
   }
 }
