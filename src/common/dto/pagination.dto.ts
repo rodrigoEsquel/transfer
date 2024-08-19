@@ -6,7 +6,7 @@ export class PageQueryParamsDto {
   @IsInt()
   @Min(1)
   @IsOptional()
-  number?: number;
+  page?: number;
 }
 
 export class LimitQueryParamsDto {

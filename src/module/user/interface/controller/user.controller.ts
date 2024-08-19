@@ -28,7 +28,7 @@ export class UserController {
     @Query('page') page: PageQueryParamsDto,
     @Query('limit') limit: LimitQueryParamsDto,
   ): Promise<UserResponseDto[]> {
-    return await this.userService.getAll({ page, limit });
+    return await this.userService.getAll(page.page, limit.limit);
   }
 
   @Get('/:id')
