@@ -4,11 +4,13 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
 } from '@nestjs/common';
 import {
+  ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -19,6 +21,7 @@ import {
   PageQueryParamsDto,
   LimitQueryParamsDto,
 } from '../../../../common/dto/pagination.dto';
+import { badIdProvidedSchema } from '../../../../common/interface/controller/schema/bad-id-provided.schema';
 
 import { userNotFoundSchema } from './schema/user-not-found.schema';
 import { UserService } from '../../application/service/user.service';
@@ -48,8 +51,14 @@ export class UserController {
     schema: { example: userNotFoundSchema },
     description: 'User not found',
   })
+  @ApiBadRequestResponse({
+    schema: { example: badIdProvidedSchema },
+    description: 'Bad request',
+  })
   @Get('/:id')
-  async getById(@Param('id') id: number): Promise<UserResponseDto> {
+  async getById(
+    @Param('id', new ParseIntPipe()) id: number,
+  ): Promise<UserResponseDto> {
     return await this.userService.getOneById(id);
   }
 
@@ -70,9 +79,13 @@ export class UserController {
     schema: { example: userNotFoundSchema },
     description: 'User not found',
   })
+  @ApiBadRequestResponse({
+    schema: { example: badIdProvidedSchema },
+    description: 'Bad request',
+  })
   @Put(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id', new ParseIntPipe()) id: number,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserResponseDto> {
     return await this.userService.update(id, updateUserDto);
@@ -83,8 +96,12 @@ export class UserController {
     schema: { example: userNotFoundSchema },
     description: 'User not found',
   })
+  @ApiBadRequestResponse({
+    schema: { example: badIdProvidedSchema },
+    description: 'Bad request',
+  })
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<void> {
+  async delete(@Param('id', new ParseIntPipe()) id: number): Promise<void> {
     return await this.userService.delete(id);
   }
 }

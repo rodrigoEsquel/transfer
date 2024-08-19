@@ -1,0 +1,5 @@
+export const badIdProvidedSchema = {
+  message: 'Validation failed (numeric string is expected)',
+  error: 'Bad Request',
+  statusCode: 400,
+};
