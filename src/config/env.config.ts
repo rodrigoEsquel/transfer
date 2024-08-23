@@ -10,5 +10,8 @@ export function getEnvConfig() {
       accessTokenDuration: process.env.TOKEN_ACCESS_DURATION,
       refreshTokenDuration: process.env.TOKEN_REFRESH_DURATION,
     },
+    hash: {
+      hashRounds: Number(process.env.HASH_ROUNDS),
+    },
   };
 }
