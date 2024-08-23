@@ -8,6 +8,8 @@ import { dataSourceOptions } from '../../../../../config/orm.config';
 import { CreateUserDto } from '../../../application/dto/create-user.dto';
 import { UpdateUserDto } from '../../../application/dto/update-user.dto';
 
+import { AppRole } from '../../../../auth/domain/app-role.enum';
+
 describe('User Controller (e2e)', () => {
   let app: INestApplication;
 
@@ -75,6 +77,8 @@ describe('User Controller (e2e)', () => {
         firstName: 'New User First',
         lastName: 'New User Last',
         email: 'newuser@example.com',
+        password: 'my.new@passw0rd',
+        role: AppRole.USER,
       };
 
       await request(app.getHttpServer())

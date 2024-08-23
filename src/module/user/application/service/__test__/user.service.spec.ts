@@ -9,6 +9,8 @@ import { UserResponseDto } from '../../dto/user-response.dto';
 import { UserRepository } from '../../../infrastructure/database/user.repository';
 import { User } from '../../../domain/user.entity';
 
+import { AppRole } from '../../../../auth/domain/app-role.enum';
+
 describe('UserService Unit Test', () => {
   let userService: UserService;
   let userRepository: jest.Mocked<UserRepository>;
@@ -83,6 +85,8 @@ describe('UserService Unit Test', () => {
       firstName: 'John',
       lastName: 'Doe',
       email: 'new.john.doe@gmail.com',
+      password: 'my.new@passw0rd',
+      role: AppRole.USER,
     };
     const mockUser: User = {
       id: 1,
