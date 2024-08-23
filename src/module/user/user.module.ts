@@ -9,8 +9,10 @@ import { UserController } from './interface/controller/user.controller';
 import { UserSchema } from './infrastructure/database/user.schema';
 import { UserRepository } from './infrastructure/database/user.repository';
 
+import { AuthModule } from '../auth/auth.module';
+
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([UserSchema])],
+  imports: [ConfigModule, TypeOrmModule.forFeature([UserSchema]), AuthModule],
   controllers: [UserController],
   providers: [
     UserService,
