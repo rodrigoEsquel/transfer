@@ -1,0 +1,12 @@
+entity: User
+items:
+  user1:
+    id: 1
+    firstName: 'Joe'
+    lastName: 'Doe'
+    email: 'validuser@example.com'
+  user2:
+    id: 2
+    firstName: 'Joe'
+    lastName: 'Doe'
+    email: 'existinguser@example.com'
