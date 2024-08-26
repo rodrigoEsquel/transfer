@@ -4,6 +4,7 @@ import { existsSync } from 'fs';
 
 import { initTestApp, loadFixtures } from '../../../../../config/test.config';
 import { dataSourceOptions } from '../../../../../config/orm.config';
+import { configApp } from '../../../../../config/app.config';
 
 import { CreateUserDto } from '../../../application/dto/create-user.dto';
 import { UpdateUserDto } from '../../../application/dto/update-user.dto';
@@ -20,14 +21,12 @@ describe('User Controller (e2e)', () => {
     }
     const testApp = await initTestApp();
     app = testApp.createNestApplication({ logger: false });
+    configApp(app);
     await app.init();
   });
 
-  afterEach(() => {
+  afterEach(async () => {
     jest.clearAllMocks();
-  });
-
-  afterAll(async () => {
     await app.close();
   });
 
