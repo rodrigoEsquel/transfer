@@ -9,11 +9,13 @@ import { TokenProviderService } from './infrastructure/auth-provider/token-provi
 import { AuthRepository } from './infrastructure/database/auth.repository';
 import { AuthSchema } from './infrastructure/database/auth.schema';
 import { AuthMapper } from './application/mapper/auth.mapper';
+import { AuthController } from './interface/controller/auth.controller';
 
 import { CommonModule } from '../common/common.module';
 
 @Module({
   imports: [CommonModule, ConfigModule, TypeOrmModule.forFeature([AuthSchema])],
+  controllers: [AuthController],
   providers: [
     AuthService,
     {
