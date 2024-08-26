@@ -11,7 +11,7 @@ import {
   IAuthRepository,
 } from '../interface/auth-repository.interface';
 import { AuthMapper } from '../mapper/auth.mapper';
-import { InvalidCredentialsException } from '../exeption/invalid-auth-credential.exeption';
+import { InvalidCredentialsException } from '../exception/invalid-auth-credential.exception';
 
 import { CreateAuthDto } from '../dto/create-auth.dto';
 import { UpdateAuthDto } from '../dto/update-auth.dto';

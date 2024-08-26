@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 
 import { ITokenProvider } from '../../application/interface/token-provider.interface';
 import { AuthToken, AuthTokenPayload } from '../../domain/auth-tokens.entity';
-import { InvalidTokenException } from '../../application/exeption/invalid-token.exeption';
+import { InvalidTokenException } from '../../application/exception/invalid-token.exeption';
 
 @Injectable()
 export class TokenProviderService implements ITokenProvider {

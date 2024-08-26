@@ -4,7 +4,7 @@ import { DataSource, Repository } from 'typeorm';
 import { IAuthRepository } from '../../application/interface/auth-repository.interface';
 import { AuthSchema } from './auth.schema';
 import { Auth } from '../../domain/auth.entity';
-import { InvalidCredentialsException } from '../../application/exeption/invalid-auth-credential.exeption';
+import { InvalidCredentialsException } from '../../application/exception/invalid-auth-credential.exception';
 
 @Injectable()
 export class AuthRepository implements IAuthRepository {

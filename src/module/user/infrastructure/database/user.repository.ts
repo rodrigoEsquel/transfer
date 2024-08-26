@@ -4,7 +4,7 @@ import { DataSource, Repository } from 'typeorm';
 import { UserSchema } from './user.schema';
 import { IUserRepository } from '../../application/interface/user-repository.interface';
 import { User } from '../../domain/user.entity';
-import { UserNotFoundException } from '../../application/exeption/user-not-found.exeption';
+import { UserNotFoundException } from '../../application/exception/user-not-found.exception';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
