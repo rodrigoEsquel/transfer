@@ -16,6 +16,6 @@ export class CryptoService {
   }
 
   async verifyHash(secret: string, hash: string): Promise<boolean> {
-    return await this.verifyHash(secret, hash);
+    return await this.hashProvider.verifyHash(secret, hash);
   }
 }
