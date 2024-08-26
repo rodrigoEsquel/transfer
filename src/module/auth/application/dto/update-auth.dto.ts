@@ -3,8 +3,6 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 import { AppRole } from '../../domain/app-role.enum';
 
-import { User } from '../../../user/domain/user.entity';
-
 export class UpdateAuthDto {
   @ApiProperty()
   @IsNotEmpty()
@@ -25,8 +23,4 @@ export class UpdateAuthDto {
   @IsOptional()
   @IsString()
   role?: AppRole;
-
-  @ApiPropertyOptional()
-  @IsString()
-  user?: User;
 }

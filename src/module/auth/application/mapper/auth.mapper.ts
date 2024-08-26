@@ -18,7 +18,6 @@ export class AuthMapper {
     const newAuth = new Auth();
     newAuth.username = updateAuthDto.username;
     newAuth.role = updateAuthDto.role;
-    newAuth.user = updateAuthDto.user;
     return newAuth;
   }
 }
