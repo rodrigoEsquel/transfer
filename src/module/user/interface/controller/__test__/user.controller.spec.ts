@@ -76,7 +76,7 @@ describe('User Controller (e2e)', () => {
         firstName: 'New User First',
         lastName: 'New User Last',
         email: 'newuser@example.com',
-        password: 'my.new@passw0rd',
+        password: 'my.New@passw0rd',
         role: AppRole.USER,
       };
 
@@ -89,6 +89,21 @@ describe('User Controller (e2e)', () => {
           expect(body).toHaveProperty('lastName', createUserDto.lastName);
           expect(body).toHaveProperty('email', createUserDto.email);
         });
+    });
+
+    it('should require a strong password', async () => {
+      const createUserDto: CreateUserDto = {
+        firstName: 'New First',
+        lastName: 'New Last',
+        email: 'newuser2@example.com',
+        password: 'weakpassword',
+        role: AppRole.USER,
+      };
+
+      await request(app.getHttpServer())
+        .post('/user')
+        .send(createUserDto)
+        .expect(HttpStatus.BAD_REQUEST);
     });
   });
 
