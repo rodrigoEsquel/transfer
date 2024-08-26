@@ -38,7 +38,7 @@ export const AuthSchema = new EntitySchema<Auth>({
     user: {
       target: 'User',
       type: 'one-to-one',
-      inverseSide: 'auth',
+      joinColumn: true,
     },
   },
 });
