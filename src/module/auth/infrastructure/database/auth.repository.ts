@@ -15,7 +15,10 @@ export class AuthRepository implements IAuthRepository {
   }
 
   async getOneByUsername(username: string): Promise<Auth> {
-    const auth = await this.repository.findOneBy({ username });
+    const auth = await this.repository.findOne({
+      where: { username },
+      relations: ['user'],
+    });
     if (!auth) {
       throw new InvalidCredentialsException();
     }
