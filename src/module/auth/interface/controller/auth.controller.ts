@@ -6,18 +6,26 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+
+import { exceptionResponseMapper } from '../../../../common/interface/controller/exception-response.mapper';
 
 import { AuthService } from '../../application/service/auth.service';
 import { AuthToken } from '../../domain/auth-tokens.entity';
 import { LoginDto } from '../../application/dto/login.dto';
-import { badCredentialsSchema } from './schema/bad-credentials.schema';
 import { UpdateAuthDto } from '../../application/dto/update-auth.dto';
 import { RefreshTokenDto } from '../../application/dto/refresh-token.dto';
+import { InvalidCredentialsException } from '../../application/exception/invalid-auth-credential.exception';
+import { InvalidTokenException } from '../../application/exception/invalid-token.exception';
 
 @ApiTags('Auth')
 @ApiBadRequestResponse({
-  schema: { example: badCredentialsSchema },
+  schema: { example: exceptionResponseMapper(InvalidCredentialsException) },
   description: 'Bad Credentials',
 })
 @Controller('auth')
@@ -46,6 +54,10 @@ export class AuthController {
   @ApiOkResponse({
     type: AuthToken,
     description: 'Auth Tokens Updated',
+  })
+  @ApiUnauthorizedResponse({
+    schema: { example: exceptionResponseMapper(InvalidTokenException) },
+    description: 'Invalid Token Provided',
   })
   @HttpCode(HttpStatus.OK)
   @Post('refresh')
