@@ -75,7 +75,7 @@ export class AuthService {
 
     return await this.tokenProvider.generateTokens({
       userId: userAuth.user.id,
-      role: userAuth.role,
+      role: newAuth.role,
     });
   }
 
