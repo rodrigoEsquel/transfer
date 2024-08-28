@@ -11,6 +11,11 @@ import {
 
 import { AppModule } from '../module/app.module';
 
+import {
+  HASH_PROVIDER,
+  IHashProvider,
+} from '../module/common/application/interface/hash-provider.interface';
+
 export const loadFixtures = async (
   fixturesPath: string,
   datasourceOptions: DataSourceOptions,
@@ -43,8 +48,18 @@ export const loadFixtures = async (
   }
 };
 
+export const hashProviderMock: jest.MockedObject<IHashProvider> = {
+  hash: jest.fn().mockImplementation(async (payload) => payload),
+  verifyHash: jest
+    .fn()
+    .mockImplementation(async (payload, secret) => payload === secret),
+};
+
 export const initTestApp = (): Promise<TestingModule> => {
   return Test.createTestingModule({
     imports: [AppModule],
-  }).compile();
+  })
+    .overrideProvider(HASH_PROVIDER)
+    .useValue(hashProviderMock)
+    .compile();
 };

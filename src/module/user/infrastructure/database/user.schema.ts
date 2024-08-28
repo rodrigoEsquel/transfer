@@ -19,7 +19,6 @@ export const UserSchema = new EntitySchema<User>({
     email: {
       type: String,
       unique: true,
-      nullable: true,
     },
     createdAt: {
       type: Date,

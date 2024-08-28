@@ -6,6 +6,8 @@ import { getEnvConfig } from '../config/env.config';
 import { dataSourceOptions } from '../config/orm.config';
 
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { UserModule } from './user/user.module';
       }),
     }),
     UserModule,
+    AuthModule,
+    CommonModule,
   ],
 })
 export class AppModule {}

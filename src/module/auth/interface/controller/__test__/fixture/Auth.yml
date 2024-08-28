@@ -1,0 +1,12 @@
+entity: Auth
+items:
+  auth1:
+    username: 'validuser@example.com'
+    secret: 'validpassword'
+    role: USER
+    user: '@user1'
+  auth2:
+    username: 'existinguser@example.com'
+    secret: 'currentpassword'
+    role: USER
+    user: '@user2'

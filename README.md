@@ -24,6 +24,11 @@ This repository contains a demonstration API designed to showcase various backen
 - **Future Plans**: Future plans include containerizing the application with Docker, using Docker Compose for deployment, and configuring separate setups for production and development.
 - **CI/CD**: Scripts for system deployment and CI/CD processes will be added.
 
+### Authentication and Authorization
+
+- **AuthService**: Implements user validation and JWT token generation.
+- **Role-based permissions**: Protects routes in the controllers with user roles (Admin, Client) determining access permissions.
+
 ### Testing
 
 - **End-to-End (E2E)**: Full E2E integration tests are implemented for every controller interface.
@@ -34,11 +39,6 @@ This repository contains a demonstration API designed to showcase various backen
 - **Swagger**: Swagger integration is planned to document API endpoints, including required and returned data.
 
 ## Planned Features
-
-### Authentication and Authorization
-
-- **AuthService**: Implements user validation and JWT token generation.
-- **JwtAuthGuard**: Protects routes in the controllers with user roles (Admin, Client) determining access permissions.
 
 ### WebSockets
 
