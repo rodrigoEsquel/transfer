@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -21,13 +22,13 @@ import {
   PageQueryParamsDto,
   LimitQueryParamsDto,
 } from '../../../../common/dto/pagination.dto';
-import { badIdProvidedSchema } from '../../../../common/interface/controller/schema/bad-id-provided.schema';
+import { exceptionResponseMapper } from '../../../../common/interface/controller/exception-response.mapper';
 
-import { userNotFoundSchema } from './schema/user-not-found.schema';
 import { UserService } from '../../application/service/user.service';
 import { CreateUserDto } from '../../application/dto/create-user.dto';
 import { UpdateUserDto } from '../../application/dto/update-user.dto';
 import { UserResponseDto } from '../../application/dto/user-response.dto';
+import { UserNotFoundException } from '../../application/exception/user-not-found.exception';
 
 @ApiTags('User')
 @Controller('user')
@@ -48,11 +49,11 @@ export class UserController {
     description: 'List of Users',
   })
   @ApiNotFoundResponse({
-    schema: { example: userNotFoundSchema },
+    schema: { example: exceptionResponseMapper(UserNotFoundException) },
     description: 'User not found',
   })
   @ApiBadRequestResponse({
-    schema: { example: badIdProvidedSchema },
+    schema: { example: exceptionResponseMapper(BadRequestException) },
     description: 'Bad request',
   })
   @Get('/:id')
@@ -76,11 +77,11 @@ export class UserController {
     description: 'User updated',
   })
   @ApiNotFoundResponse({
-    schema: { example: userNotFoundSchema },
+    schema: { example: exceptionResponseMapper(UserNotFoundException) },
     description: 'User not found',
   })
   @ApiBadRequestResponse({
-    schema: { example: badIdProvidedSchema },
+    schema: { example: exceptionResponseMapper(BadRequestException) },
     description: 'Bad request',
   })
   @Put(':id')
@@ -93,11 +94,11 @@ export class UserController {
 
   @ApiOkResponse()
   @ApiNotFoundResponse({
-    schema: { example: userNotFoundSchema },
+    schema: { example: exceptionResponseMapper(UserNotFoundException) },
     description: 'User not found',
   })
   @ApiBadRequestResponse({
-    schema: { example: badIdProvidedSchema },
+    schema: { example: exceptionResponseMapper(BadRequestException) },
     description: 'Bad request',
   })
   @Delete(':id')
