@@ -21,6 +21,7 @@ This repository contains a demonstration API designed to showcase various backen
 ### Infrastructure
 
 - **Local Development**: The application uses Docker to run the database locally.
+- **Cloud Deployment**: Deploy the repository image in Render.com.
 - **Future Plans**: Future plans include containerizing the application with Docker, using Docker Compose for deployment, and configuring separate setups for production and development.
 - **CI/CD**: Scripts for system deployment and CI/CD processes will be added.
 
