@@ -1,6 +1,30 @@
 version: '3'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - TOKEN_ACCESS_SECRET=${TOKEN_ACCESS_SECRET}
+      - TOKEN_REFRESH_SECRET=${TOKEN_REFRESH_SECRET}
+      - TOKEN_ACCESS_DURATION=${TOKEN_ACCESS_DURATION}
+      - TOKEN_REFRESH_DURATION=${TOKEN_REFRESH_DURATION}
+      - HASH_ROUNDS=${HASH_ROUNDS}
+    depends_on:
+      - db
+    networks:
+      - app-network
+
   db:
     image: mysql:8.0
     cap_add:
@@ -12,3 +36,10 @@ services:
       - '${DB_PORT}:3306'
     volumes:
       - ./data/docker/volumes/mysql/:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
