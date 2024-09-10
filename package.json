@@ -8,6 +8,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
+    "dev": "docker compose -f docker-compose.dev.yml up --build -d; npm run start:dev",
+    "prod": "docker compose up --build",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
